@@ -1,0 +1,13 @@
+services:
+  nginx:
+    image: jonasal/nginx-certbot:latest
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./user_conf.d:/etc/nginx/user_conf.d
+      - ./letsencrypt:/etc/letsencrypt
+      - ./html:/var/www/html
+    environment:
+      - CERTBOT_EMAIL
